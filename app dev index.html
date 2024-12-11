@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Hire - Bowman Car Hire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Brush Script MT', cursive;
+            font-size: 3em;
+            color: #007BFF;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+        .form-container {
+            background-color: #f1f1f1;
+            padding: 30px;
+            border-radius: 10px;
+            width: 60%;
+            margin: auto;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .input-label {
+            margin: 10px 0;
+            display: block;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: #fff;
+        }
+        .button {
+            background-color: #007BFF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .record-count {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.5em;
+            color: #007BFF;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; 
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bowman Car Hire</h1>
+
+    <div class="form-container">
+        <!-- Display a record from the car hire database -->
+        <form id="carForm">
+            <div class="input-label">Vehicle Registration Number</div>
+            <input type="text" id="vehicleRegNo" class="input-field" placeholder="Enter Vehicle Registration Number">
+
+            <div class="input-label">Make</div>
+            <input type="text" id="make" class="input-field" placeholder="Enter Make of Vehicle">
+
+            <div class="input-label">Engine Size</div>
+            <input type="text" id="engineSize" class="input-field" placeholder="Enter Engine Size">
+
+            <div class="input-label">Rental Per Day</div>
+            <input type="number" id="rentalPerDay" class="input-field" placeholder="Enter Rental Per Day" step="0.01">
+
+            <div class="input-label">Available</div>
+            <input type="text" id="available" class="input-field" placeholder="Enter Availability Status">
+
+            <div class="nav-buttons">
+                <button type="button" class="button">First</button>
+                <button type="button" class="button">Previous</button>
+                <button type="button" class="button">Next</button>
+                <button type="button" class="button">Last</button>
+            </div>
+
+            <div class="record-count">
+                <span>Record <span id="currentRecord">1</span> of <span id="totalRecords">100</span></span>
+            </div>
+
+            <div>
+                <button type="button" class="button">Update</button>
+                <button type="button" class="button">Add</button>
+                <button type="button" class="button">Delete</button>
+                <button type="button" class="button" id="searchBtn">Search</button>
+                <button type="button" class="button">Cancel</button>
+                <button type="button" class="button">Exit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Search form (visible when user clicks on search) -->
+    <div class="form-container" id="searchForm" style="display:none;">
+        <h3>Search for Cars</h3>
+        <div class="input-label">Search Field</div>
+        <select id="searchField" class="input-field">
+            <option value="Make">Make</option>
+            <option value="EngineSize">Engine Size</option>
+            <option value="RentalPerDay">Rental Per Day</option>
+            <option value="Available">Available</option>
+        </select>
+
+        <div class="input-label">Operator</div>
+        <select id="searchOperator" class="input-field">
+            <option value="=">=</option>
+            <option value="<">&lt;</option>
+            <option value=">">&gt;</option>
+            <option value="<=">&lt;=</option>
+            <option value=">=">&gt;=</option>
+        </select>
+
+        <div class="input-label">Search Value</div>
+        <input type="text" id="searchValue" class="input-field" placeholder="Enter search value">
+
+        <button type="button" class="button" id="runSearchBtn">Run</button>
+        <button type="button" class="button" id="closeSearchBtn">Close</button>
+    </div>
+
+    <script>
+        // Handle the visibility of search form
+        document.getElementById('searchBtn').addEventListener('click', function() {
+            document.getElementById('searchForm').style.display = 'block';
+        });
+
+        document.getElementById('closeSearchBtn').addEventListener('click', function() {
+            document.getElementById('searchForm').style.display = 'none';
+        });
+
+        // Search functionality (placeholder)
+        document.getElementById('runSearchBtn').addEventListener('click', function() {
+            // Add your search logic here (fetch data based on search criteria)
+            alert('Search functionality will be implemented here.');
+        });
+
+        // Example tooltips
+        let makeInput = document.getElementById('make');
+        makeInput.classList.add('tooltip');
+        makeInput.innerHTML = 'Enter the make of the vehicle';
+    </script>
+
+</body>
+</html>
